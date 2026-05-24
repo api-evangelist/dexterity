@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Dexterity
+providerId: dexterity
+created: '2026-05-24'
+modified: '2026-05-24'
+tags:
+  - PhysicalAI
+  - Foresight
+  - PackingChallenge
+  - RateLimiting
+  - Quotas
+description: Rate limit definitions for the public Dexterity Foresight Packing Challenge API. Limits are documented on the challenge landing page; the API itself does not publish standard RateLimit-* headers, so quota visibility is delivered via the /my-games endpoint summary block (games_today / daily_limit).
+headers:
+  limit: null
+  remaining: null
+  reset: null
+  retryAfter: null
+  policy: null
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  serviceUnavailable: 503
+limits:
+  - tier: research-dev
+    name: Dev Mode Unlimited
+    scope: api-key
+    metric: games_per_day
+    limit: -1
+    timeFrame: day
+    applies:
+      - Foresight Packing Challenge API (dev mode)
+    notes: Dev mode is intended for unlimited, unscored agent development and is not rate-limited.
+  - tier: research-compete
+    name: Compete Mode Daily Quota
+    scope: api-key
+    metric: games_per_day
+    limit: 50
+    timeFrame: day
+    applies:
+      - Foresight Packing Challenge API (compete mode)
+    quotaVisibility:
+      endpoint: GET /my-games
+      fields:
+        - summary.games_today
+        - summary.daily_limit
+    notes: Compete mode is capped at 50 games per API key per day. Quota usage is exposed through /my-games rather than via HTTP headers.
+  - tier: research-private-eval
+    name: Private Evaluation
+    scope: api-key
+    metric: games_per_window
+    timeFrame: window
+    applies:
+      - Foresight Packing Challenge API (private_eval mode)
+    notes: Private evaluation runs in a fixed 48-hour window for the top five public-leaderboard teams. Per-team game count and window timing are set by Dexterity.
+recoveryStrategy:
+  retryGuidance: Compete mode quotas reset daily. Use dev mode for iterative agent development and only switch to compete when ready to score.
+  backoff: Not specified by provider; clients should treat 429 responses as terminal for the day and resume after the next UTC day boundary.

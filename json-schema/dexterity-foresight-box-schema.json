@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dexterity/main/json-schema/dexterity-foresight-box-schema.json",
+  "title": "Box",
+  "description": "A rigid rectangular box presented to a packing agent. Each box has an identifier, three dimensions in metres, and a weight in kilograms.",
+  "type": "object",
+  "required": ["id", "dimensions", "weight"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the box within the game."
+    },
+    "dimensions": {
+      "type": "array",
+      "description": "Box extents along the x, y, z axes in metres.",
+      "items": {"type": "number", "minimum": 0},
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Box weight in kilograms."
+    }
+  }
+}

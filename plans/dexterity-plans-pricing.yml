@@ -1,0 +1,75 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Dexterity
+providerId: dexterity
+created: '2026-05-24'
+modified: '2026-05-24'
+tags:
+  - PhysicalAI
+  - Robotics
+  - Foresight
+  - PackingChallenge
+  - Research
+description: Machine-readable plans for the public Foresight Packing Challenge API. Dexterity's commercial robotics platform (Mech, Foresight in production) is sold as enterprise hardware and services with custom pricing — this plan document captures the only programmatic, self-service surface Dexterity currently exposes to developers, which is the research-grade Packing Challenge with a $50,000 grand prize rather than a paid SaaS tier.
+plans:
+  - id: dexterity-research
+    name: Research Access (.edu)
+    type: free
+    description: Free research-tier access to the Foresight Packing Challenge API. API keys are issued by playing the public Truck Loading Game and reaching at least 50% packing density. Participation in the competition leaderboard is restricted to holders of .edu or equivalent university email addresses.
+    eligibility:
+      - Researchers and students with a .edu or equivalent university email
+      - Anyone who reaches 50% density in the public Truck Loading Game (dev-mode access)
+    entries:
+      - label: Dev-Mode Games
+        description: Unlimited, physics-free games for agent development. Box placements are accepted exactly as specified, with no stability simulation and no leaderboard scoring.
+        name: dev_games
+        type: quota
+        metric: games
+        limit: -1
+        timeFrame: day
+        geo: global
+        domains:
+          - https://dexterity.ai/challenge/api
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Compete-Mode Games
+        description: Full physics simulation, ranked on the public leaderboard. Daily quota per API key.
+        name: compete_games
+        type: quota
+        metric: games
+        limit: 50
+        timeFrame: day
+        geo: global
+        domains:
+          - https://dexterity.ai/challenge/api
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Public Documentation
+      - name: Swagger UI at /challenge/api/docs
+      - name: Foresight Packing Challenge API
+      - name: Public Leaderboard
+      - name: Eligibility For 50,000 USD Grand Prize
+  - id: dexterity-enterprise
+    name: Enterprise Physical AI Deployment
+    type: enterprise
+    description: Dexterity's commercial offering — the Mech industrial robot with the Foresight world model, deployed inside customer facilities for trailer loading, palletizing, depalletizing, singulation, and related logistics workflows. Sold via direct enterprise contract; there is no self-service developer API or published list price.
+    eligibility:
+      - Enterprise customers in warehousing, logistics, manufacturing
+      - Engagement starts via contact@dexterity.ai
+    elements:
+      - name: Mech Roving Dual-Arm Robot
+      - name: Foresight World Model
+      - name: IRIS Hardware Abstraction Layer
+      - name: 24/7 Production Support
+      - name: Custom Integration Services
+    pricing:
+      model: custom
+      contact: contact@dexterity.ai
+      url: https://dexterity.ai/contact
+notes:
+  - Pricing for the commercial Physical AI offering is not published; enterprise engagements are quoted per deployment.
+  - The Foresight Packing Challenge is the only Dexterity API endpoint with a public, programmatic interface today.

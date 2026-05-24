@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-01",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dexterity/main/json-structure/dexterity-foresight-game-structure.json",
+  "title": "Game Structure",
+  "description": "Operational structure of a Dexterity Foresight Packing Challenge game, mapping its lifecycle and constituent entities for downstream tooling and capability planning.",
+  "entities": {
+    "Game": {
+      "key": "game_id",
+      "transitions": [
+        {"from": "start", "to": "in_progress", "operation": "POST /start"},
+        {"from": "in_progress", "to": "in_progress", "operation": "POST /place"},
+        {"from": "in_progress", "to": "completed", "operation": "POST /stop"},
+        {"from": "in_progress", "to": "completed", "trigger": "termination_reason=unstable"}
+      ],
+      "metrics": ["density", "boxes_placed", "decision_latency_ms"]
+    },
+    "Box": {
+      "key": "id",
+      "owned_by": "Game",
+      "lifecycle": ["queued", "current", "placed"]
+    },
+    "Player": {
+      "key": "api_key",
+      "owns": ["Game"],
+      "limits": {"daily_compete_games": 50}
+    },
+    "Leaderboard": {
+      "scope": "global",
+      "ranks": "Player",
+      "by": ["avg_density", "iqm_density", "best_density"]
+    }
+  }
+}

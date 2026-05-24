@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://dexterity.ai/challenge/api/leaderboard"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "updated_at": "2026-04-22T18:00:00Z",
+      "entries": [
+        {
+          "rank": 1,
+          "display_name": "mit-pack-it",
+          "avg_density": 0.7621,
+          "best_density": 0.7903,
+          "iqm_density": 0.7732,
+          "games_evaluated": 38
+        },
+        {
+          "rank": 2,
+          "display_name": "stanford-bin-packers",
+          "avg_density": 0.7421,
+          "best_density": 0.7681,
+          "iqm_density": 0.7488,
+          "games_evaluated": 41
+        }
+      ]
+    }
+  }
+}

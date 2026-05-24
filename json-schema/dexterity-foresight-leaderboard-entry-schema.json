@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dexterity/main/json-schema/dexterity-foresight-leaderboard-entry-schema.json",
+  "title": "LeaderboardEntry",
+  "description": "A single competitor's standing on the Foresight Packing Challenge public leaderboard.",
+  "type": "object",
+  "required": ["rank", "display_name", "avg_density", "best_density"],
+  "properties": {
+    "rank": {"type": "integer", "minimum": 1},
+    "display_name": {"type": "string"},
+    "avg_density": {"type": "number", "minimum": 0, "maximum": 1},
+    "best_density": {"type": "number", "minimum": 0, "maximum": 1},
+    "iqm_density": {"type": "number", "minimum": 0, "maximum": 1},
+    "games_evaluated": {"type": "integer", "minimum": 0}
+  }
+}

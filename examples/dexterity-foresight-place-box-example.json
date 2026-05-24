@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://dexterity.ai/challenge/api/place",
+    "body": {
+      "game_id": "game_01HXY7F4ZQ7B2J9V3K8M",
+      "box_id": "box_001",
+      "position": [0.21, 0.16, 0.14],
+      "orientation_wxyz": [1.0, 0.0, 0.0, 0.0]
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "placed_boxes": [
+        {
+          "id": "box_001",
+          "position": [0.21, 0.16, 0.14],
+          "orientation_wxyz": [1.0, 0.0, 0.0, 0.0],
+          "dimensions": [0.42, 0.32, 0.28]
+        }
+      ],
+      "current_box": {
+        "id": "box_002",
+        "dimensions": [0.55, 0.40, 0.30],
+        "weight": 12.4
+      },
+      "boxes_remaining": 311,
+      "density": 0.027,
+      "game_status": "in_progress",
+      "termination_reason": null,
+      "decision_latency_ms": 312.7
+    }
+  }
+}

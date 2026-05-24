@@ -1,0 +1,66 @@
+extends: [[spectral:oas, recommended]]
+rules:
+  dexterity-info-contact:
+    description: Dexterity APIs must declare a contact block.
+    given: $.info
+    severity: error
+    then:
+      field: contact
+      function: truthy
+  dexterity-info-terms:
+    description: Dexterity APIs must reference termsOfService.
+    given: $.info
+    severity: error
+    then:
+      field: termsOfService
+      function: truthy
+  dexterity-server-https:
+    description: Server URLs must use HTTPS.
+    given: $.servers[*].url
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://'
+  dexterity-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    given: $.paths..[get,post,put,patch,delete].summary
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z0-9]*(\s+[A-Z0-9][A-Za-z0-9]*)*$'
+  dexterity-operation-id-snake:
+    description: operationId values use snake_case (FastAPI-style auto-IDs are accepted).
+    given: $.paths..[get,post,put,patch,delete].operationId
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-z0-9_]*$'
+  dexterity-operation-tags-required:
+    description: Every operation must be tagged.
+    given: $.paths..[get,post,put,patch,delete]
+    severity: warn
+    then:
+      field: tags
+      function: truthy
+  dexterity-response-2xx-required:
+    description: Every operation must define at least one 2xx response.
+    given: $.paths..[get,post,put,patch,delete].responses
+    severity: error
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            '^2[0-9]{2}$': {}
+          minProperties: 1
+  dexterity-validation-error-defined:
+    description: Mutating operations should document 422 validation errors.
+    given: $.paths..[post,put,patch].responses
+    severity: warn
+    then:
+      field: '422'
+      function: truthy

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dexterity/main/json-schema/dexterity-foresight-placed-box-schema.json",
+  "title": "PlacedBox",
+  "description": "A box that has been placed inside the truck, including its world position and orientation as a unit quaternion in wxyz order.",
+  "type": "object",
+  "required": ["id", "position", "orientation_wxyz", "dimensions"],
+  "properties": {
+    "id": {"type": "string"},
+    "position": {
+      "type": "array",
+      "description": "Box center position in metres relative to the truck origin (x, y, z).",
+      "items": {"type": "number"},
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "orientation_wxyz": {
+      "type": "array",
+      "description": "Box orientation as a unit quaternion in wxyz order.",
+      "items": {"type": "number"},
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "dimensions": {
+      "type": "array",
+      "items": {"type": "number", "minimum": 0},
+      "minItems": 3,
+      "maxItems": 3
+    }
+  }
+}

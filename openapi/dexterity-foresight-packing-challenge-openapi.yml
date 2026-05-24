@@ -1,0 +1,727 @@
+openapi: 3.1.0
+info:
+  title: Dexterity Foresight Packing Challenge API
+  version: 0.1.0
+  description: 'The Foresight Packing Challenge API is a public REST API published by Dexterity that exposes a subset of the
+    Foresight world model as a sequential 3D bin-packing problem. Developers (currently restricted to .edu email holders)
+    drive the API to start a game, place boxes inside a 2.0m x 2.6m x 2.75m truck, query game status, and submit results to
+    a public leaderboard. Two modes are supported: dev (unlimited, physics-free placement) and compete (full physics simulation
+    with a 50 games/day rate limit per API key). API keys are obtained by playing the public Truck Loading Game at https://dexterity.ai/play
+    and reaching at least 50% packing density.'
+  contact:
+    name: Dexterity
+    url: https://dexterity.ai/contact
+    email: contact@dexterity.ai
+  termsOfService: https://dexterity.ai/terms-conditions
+paths:
+  /start:
+    post:
+      summary: Start Game
+      operationId: start_game_start_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Games
+  /place:
+    post:
+      summary: Place Box
+      operationId: place_box_place_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaceResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Games
+  /stop:
+    post:
+      summary: Stop Game
+      operationId: stop_game_stop_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StopRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StopResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Games
+  /status/{game_id}:
+    get:
+      summary: Get Status
+      operationId: get_status_status__game_id__get
+      parameters:
+      - name: game_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Game Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Games
+  /my-games:
+    get:
+      summary: Get My Games
+      operationId: get_my_games_my_games_get
+      parameters:
+      - name: api_key
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Api Key
+      - name: mode
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/GameMode'
+          - type: 'null'
+          title: Mode
+      - name: status
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - $ref: '#/components/schemas/GameStatus'
+          - type: 'null'
+          title: Status
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MyGamesResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Games
+  /display-name:
+    post:
+      summary: Update Display Name
+      operationId: update_display_name_display_name_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDisplayNameRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateDisplayNameResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Players
+  /leaderboard:
+    get:
+      summary: Get Leaderboard
+      operationId: get_leaderboard_leaderboard_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Leaderboard
+  /health:
+    get:
+      summary: Health
+      operationId: health_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - System
+components:
+  schemas:
+    BoxInfo:
+      properties:
+        id:
+          type: string
+          title: Id
+        dimensions:
+          items:
+            type: number
+          type: array
+          title: Dimensions
+        weight:
+          type: number
+          title: Weight
+      type: object
+      required:
+      - id
+      - dimensions
+      - weight
+      title: BoxInfo
+    GameListItem:
+      properties:
+        game_id:
+          type: string
+          title: Game Id
+        mode:
+          $ref: '#/components/schemas/GameMode'
+        status:
+          $ref: '#/components/schemas/GameStatus'
+        density:
+          type: number
+          title: Density
+        boxes_placed:
+          type: integer
+          title: Boxes Placed
+        total_boxes:
+          type: integer
+          title: Total Boxes
+        termination_reason:
+          anyOf:
+          - $ref: '#/components/schemas/TerminationReason'
+          - type: 'null'
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+      type: object
+      required:
+      - game_id
+      - mode
+      - status
+      - density
+      - boxes_placed
+      - total_boxes
+      title: GameListItem
+    GameMode:
+      type: string
+      enum:
+      - dev
+      - compete
+      - private_eval
+      title: GameMode
+    GameStatus:
+      type: string
+      enum:
+      - in_progress
+      - completed
+      title: GameStatus
+    GamesSummary:
+      properties:
+        total_games:
+          type: integer
+          title: Total Games
+        completed_games:
+          type: integer
+          title: Completed Games
+        in_progress_games:
+          type: integer
+          title: In Progress Games
+        avg_density_compete:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg Density Compete
+        best_density_compete:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Best Density Compete
+        iqm_density_compete:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Iqm Density Compete
+        games_today:
+          type: integer
+          title: Games Today
+        daily_limit:
+          type: integer
+          title: Daily Limit
+        private_eval:
+          anyOf:
+          - $ref: '#/components/schemas/PrivateEvalSummary'
+          - type: 'null'
+      type: object
+      required:
+      - total_games
+      - completed_games
+      - in_progress_games
+      - games_today
+      - daily_limit
+      title: GamesSummary
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LatencyStats:
+      properties:
+        median_ms:
+          type: number
+          title: Median Ms
+        p95_ms:
+          type: number
+          title: P95 Ms
+        max_ms:
+          type: number
+          title: Max Ms
+      type: object
+      required:
+      - median_ms
+      - p95_ms
+      - max_ms
+      title: LatencyStats
+    MyGamesResponse:
+      properties:
+        api_key:
+          type: string
+          title: Api Key
+        display_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display Name
+        summary:
+          $ref: '#/components/schemas/GamesSummary'
+        games:
+          items:
+            $ref: '#/components/schemas/GameListItem'
+          type: array
+          title: Games
+      type: object
+      required:
+      - api_key
+      - summary
+      - games
+      title: MyGamesResponse
+    PlaceRequest:
+      properties:
+        game_id:
+          type: string
+          title: Game Id
+        box_id:
+          type: string
+          title: Box Id
+        position:
+          items:
+            type: number
+          type: array
+          title: Position
+        orientation_wxyz:
+          items:
+            type: number
+          type: array
+          title: Orientation Wxyz
+      type: object
+      required:
+      - game_id
+      - box_id
+      - position
+      - orientation_wxyz
+      title: PlaceRequest
+    PlaceResponse:
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+          - terminated
+          title: Status
+        placed_boxes:
+          items:
+            $ref: '#/components/schemas/PlacedBox'
+          type: array
+          title: Placed Boxes
+        current_box:
+          anyOf:
+          - $ref: '#/components/schemas/BoxInfo'
+          - type: 'null'
+        boxes_remaining:
+          type: integer
+          title: Boxes Remaining
+        density:
+          type: number
+          title: Density
+        game_status:
+          $ref: '#/components/schemas/GameStatus'
+        termination_reason:
+          anyOf:
+          - $ref: '#/components/schemas/TerminationReason'
+          - type: 'null'
+        decision_latency_ms:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Decision Latency Ms
+      type: object
+      required:
+      - status
+      - placed_boxes
+      - current_box
+      - boxes_remaining
+      - density
+      - game_status
+      title: PlaceResponse
+    PlacedBox:
+      properties:
+        id:
+          type: string
+          title: Id
+        position:
+          items:
+            type: number
+          type: array
+          title: Position
+        orientation_wxyz:
+          items:
+            type: number
+          type: array
+          title: Orientation Wxyz
+        dimensions:
+          items:
+            type: number
+          type: array
+          title: Dimensions
+      type: object
+      required:
+      - id
+      - position
+      - orientation_wxyz
+      - dimensions
+      title: PlacedBox
+    PrivateEvalSummary:
+      properties:
+        games_started:
+          type: integer
+          title: Games Started
+        games_completed:
+          type: integer
+          title: Games Completed
+        games_remaining:
+          type: integer
+          title: Games Remaining
+        next_sequence_index:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Next Sequence Index
+        last_density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Last Density
+        avg_density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg Density
+        best_density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Best Density
+        iqm_density:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Iqm Density
+        in_progress_game_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: In Progress Game Id
+      type: object
+      required:
+      - games_started
+      - games_completed
+      - games_remaining
+      title: PrivateEvalSummary
+    StartRequest:
+      properties:
+        api_key:
+          type: string
+          title: Api Key
+        mode:
+          $ref: '#/components/schemas/GameMode'
+          default: compete
+      type: object
+      required:
+      - api_key
+      title: StartRequest
+    StartResponse:
+      properties:
+        game_id:
+          type: string
+          title: Game Id
+        truck:
+          $ref: '#/components/schemas/TruckConfig'
+        current_box:
+          $ref: '#/components/schemas/BoxInfo'
+        boxes_remaining:
+          type: integer
+          title: Boxes Remaining
+        mode:
+          $ref: '#/components/schemas/GameMode'
+      type: object
+      required:
+      - game_id
+      - truck
+      - current_box
+      - boxes_remaining
+      - mode
+      title: StartResponse
+    StatusResponse:
+      properties:
+        game_id:
+          type: string
+          title: Game Id
+        game_status:
+          $ref: '#/components/schemas/GameStatus'
+        mode:
+          $ref: '#/components/schemas/GameMode'
+        boxes_placed:
+          type: integer
+          title: Boxes Placed
+        boxes_remaining:
+          type: integer
+          title: Boxes Remaining
+        density:
+          type: number
+          title: Density
+        placed_boxes:
+          items:
+            $ref: '#/components/schemas/PlacedBox'
+          type: array
+          title: Placed Boxes
+        current_box:
+          anyOf:
+          - $ref: '#/components/schemas/BoxInfo'
+          - type: 'null'
+        placement_in_progress:
+          type: boolean
+          title: Placement In Progress
+          default: false
+        termination_reason:
+          anyOf:
+          - $ref: '#/components/schemas/TerminationReason'
+          - type: 'null'
+        latency_stats:
+          anyOf:
+          - $ref: '#/components/schemas/LatencyStats'
+          - type: 'null'
+      type: object
+      required:
+      - game_id
+      - game_status
+      - mode
+      - boxes_placed
+      - boxes_remaining
+      - density
+      - placed_boxes
+      - current_box
+      title: StatusResponse
+    StopRequest:
+      properties:
+        game_id:
+          type: string
+          title: Game Id
+        api_key:
+          type: string
+          title: Api Key
+      type: object
+      required:
+      - game_id
+      - api_key
+      title: StopRequest
+    StopResponse:
+      properties:
+        density:
+          type: number
+          title: Density
+        boxes_placed:
+          type: integer
+          title: Boxes Placed
+        boxes_remaining:
+          type: integer
+          title: Boxes Remaining
+        game_status:
+          $ref: '#/components/schemas/GameStatus'
+          default: completed
+        latency_stats:
+          anyOf:
+          - $ref: '#/components/schemas/LatencyStats'
+          - type: 'null'
+      type: object
+      required:
+      - density
+      - boxes_placed
+      - boxes_remaining
+      title: StopResponse
+    TerminationReason:
+      type: string
+      enum:
+      - player_stop
+      - unstable
+      title: TerminationReason
+    TruckConfig:
+      properties:
+        depth:
+          type: number
+          title: Depth
+        width:
+          type: number
+          title: Width
+        height:
+          type: number
+          title: Height
+      type: object
+      required:
+      - depth
+      - width
+      - height
+      title: TruckConfig
+    UpdateDisplayNameRequest:
+      properties:
+        api_key:
+          type: string
+          title: Api Key
+        display_name:
+          type: string
+          title: Display Name
+      type: object
+      required:
+      - api_key
+      - display_name
+      title: UpdateDisplayNameRequest
+    UpdateDisplayNameResponse:
+      properties:
+        display_name:
+          type: string
+          title: Display Name
+      type: object
+      required:
+      - display_name
+      title: UpdateDisplayNameResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+externalDocs:
+  description: Foresight API Challenge
+  url: https://dexterity.ai/challenge
+servers:
+- url: https://dexterity.ai/challenge/api
+  description: Foresight Packing Challenge production endpoint
+tags:
+- name: Games
+  description: Start, place boxes in, stop and query the status of packing games.
+- name: Players
+  description: List a player's games and update their public display name.
+- name: Leaderboard
+  description: Retrieve the public Foresight Packing Challenge leaderboard.
+- name: System
+  description: Service health and operational endpoints.

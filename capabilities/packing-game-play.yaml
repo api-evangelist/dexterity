@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Dexterity Foresight Packing Challenge — Play Game
+  description: 'End-to-end workflow capability for a Foresight Packing Challenge competitor. Starts a game, iteratively places boxes returned by the API, stops the game when the agent is satisfied, and records the final density score. Self-contained Naftiko capability covering the play lifecycle of one Dexterity Foresight Packing Challenge game.'
+  tags:
+  - Dexterity
+  - Foresight
+  - PackingChallenge
+  - Robotics
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    DEXTERITY_API_KEY: DEXTERITY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: dexterity-foresight
+    baseUri: https://dexterity.ai/challenge/api
+    description: Foresight Packing Challenge REST API — game lifecycle endpoints.
+    resources:
+    - name: start
+      path: /start
+      operations:
+      - name: startgame
+        method: POST
+        description: Start a new packing game in dev or compete mode.
+        outputRawFormat: json
+        outputParameters:
+        - name: game_id
+          type: string
+          value: $.game_id
+        - name: current_box
+          type: object
+          value: $.current_box
+        - name: boxes_remaining
+          type: integer
+          value: $.boxes_remaining
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: 'Start request body. Required keys: api_key (string), mode (dev|compete|private_eval).'
+          required: true
+    - name: place
+      path: /place
+      operations:
+      - name: placebox
+        method: POST
+        description: Place the current box at a given position and orientation inside the truck.
+        outputRawFormat: json
+        outputParameters:
+        - name: status
+          type: string
+          value: $.status
+        - name: density
+          type: number
+          value: $.density
+        - name: current_box
+          type: object
+          value: $.current_box
+        - name: boxes_remaining
+          type: integer
+          value: $.boxes_remaining
+        - name: termination_reason
+          type: string
+          value: $.termination_reason
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: 'Place request body. Required keys: game_id, box_id, position (xyz), orientation_wxyz (quaternion).'
+          required: true
+    - name: stop
+      path: /stop
+      operations:
+      - name: stopgame
+        method: POST
+        description: Stop the game and record the final packing density.
+        outputRawFormat: json
+        outputParameters:
+        - name: density
+          type: number
+          value: $.density
+        - name: boxes_placed
+          type: integer
+          value: $.boxes_placed
+        - name: latency_stats
+          type: object
+          value: $.latency_stats
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: 'Stop request body. Required keys: game_id, api_key.'
+          required: true
+    - name: status
+      path: '/status/{game_id}'
+      operations:
+      - name: getstatus
+        method: GET
+        description: Return the current state of a game, including placed boxes and current pending box.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: game_id
+          in: path
+          type: string
+          required: true

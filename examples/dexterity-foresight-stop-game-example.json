@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://dexterity.ai/challenge/api/stop",
+    "body": {
+      "game_id": "game_01HXY7F4ZQ7B2J9V3K8M",
+      "api_key": "fpc_live_8a4f7e9b1c2d3a5f"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "density": 0.7142,
+      "boxes_placed": 187,
+      "boxes_remaining": 125,
+      "game_status": "completed",
+      "latency_stats": {
+        "median_ms": 284.5,
+        "p95_ms": 372.1,
+        "max_ms": 411.6
+      }
+    }
+  }
+}

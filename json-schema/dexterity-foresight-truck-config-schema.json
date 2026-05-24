@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dexterity/main/json-schema/dexterity-foresight-truck-config-schema.json",
+  "title": "TruckConfig",
+  "description": "Internal dimensions of the truck container in metres. Default Foresight Packing Challenge truck is 2.0m wide by 2.6m deep by 2.75m tall.",
+  "type": "object",
+  "required": ["depth", "width", "height"],
+  "properties": {
+    "depth": {"type": "number", "minimum": 0, "description": "Truck depth in metres."},
+    "width": {"type": "number", "minimum": 0, "description": "Truck width in metres."},
+    "height": {"type": "number", "minimum": 0, "description": "Truck height in metres."}
+  }
+}

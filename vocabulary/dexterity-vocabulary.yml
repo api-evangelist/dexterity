@@ -1,0 +1,80 @@
+vocabulary:
+  name: Dexterity
+  description: Controlled vocabulary covering Dexterity's Physical AI platform — the Foresight world model, the Mech industrial robot, the Foresight Packing Challenge API surface, and the operational domains (warehouse, logistics, manufacturing) where Dexterity systems are deployed.
+  version: '0.1'
+  domains:
+    PhysicalAI:
+      definition: Software that lets robots perceive, reason about, and act in physical environments — Dexterity's core thesis. Encompasses world models, skill agents, and dual-arm orchestration.
+      terms:
+        - Foresight
+        - WorldModel
+        - SkillAgent
+        - PackingAgent
+        - MotionAgent
+        - ActualizationAgent
+        - TrajectoryAgent
+        - ForceControlAgent
+        - DualArmOrchestration
+        - HardwareAbstractionLayer
+        - IRIS
+        - Instinct
+    Robotics:
+      definition: The hardware substrate on which Dexterity's Physical AI runs.
+      terms:
+        - Mech
+        - Superhumanoid
+        - RobotArm
+        - MobileBase
+        - Gripper
+        - Kawasaki
+        - HiWin
+        - SixAxisForceSensing
+    Logistics:
+      definition: The primary deployment domain — warehouse and supply chain operations Dexterity automates.
+      terms:
+        - TruckLoading
+        - TruckUnloading
+        - Trailer
+        - Palletizing
+        - Depalletizing
+        - Singulation
+        - AircraftLoading
+        - PackingDensity
+        - PackingChallenge
+        - Intralogistics
+    PackingChallengeAPI:
+      definition: Concepts exposed by the public Foresight Packing Challenge REST API.
+      terms:
+        - Game
+        - GameMode
+        - DevMode
+        - CompeteMode
+        - PrivateEvalMode
+        - Box
+        - PlacedBox
+        - TruckConfig
+        - APIKey
+        - Density
+        - IQMDensity
+        - Leaderboard
+        - TerminationReason
+        - DecisionLatency
+    Customers:
+      definition: Enterprise customers and partners running Dexterity systems in production.
+      terms:
+        - FedEx
+        - SagawaExpress
+        - SumitomoCorporation
+        - Maersk
+        - UPS
+        - VFC
+  tags:
+    - PhysicalAI
+    - Robotics
+    - Logistics
+    - WorldModel
+    - Foresight
+    - PackingChallenge
+    - DualArm
+    - Manufacturing
+    - Warehouse

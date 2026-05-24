@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://dexterity.ai/challenge/api/health"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "version": "0.1.0"
+    }
+  }
+}

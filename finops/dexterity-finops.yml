@@ -1,0 +1,93 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Dexterity
+providerId: dexterity
+publisherName: Dexterity Inc.
+serviceCategory: PhysicalAI
+created: '2026-05-24'
+modified: '2026-05-24'
+tags:
+  - PhysicalAI
+  - Robotics
+  - Foresight
+  - FinOps
+  - FOCUS
+description: FinOps scaffold for Dexterity's commercial Physical AI deployments. Dexterity's billing surface is enterprise — Mech robot fleets, Foresight licensing, and integration services — rather than a metered developer API. This document maps that enterprise surface to the FinOps Framework so customers and partners can allocate cost, measure unit economics, and reason about Physical AI return on investment in FOCUS-compatible terms. The public Foresight Packing Challenge API is currently zero-cost research access and is included only for completeness.
+principles:
+  - name: Visibility
+    description: Make per-robot, per-shift, and per-workflow cost visible to operations, finance, and engineering teams.
+  - name: Allocation
+    description: Tag every robot hour, autonomous action, and integration engagement with the consuming business unit, facility, customer, and workflow.
+  - name: Optimization
+    description: Continuously evaluate robot utilization, decision latency, and pack density to reduce cost per case handled.
+  - name: Accountability
+    description: Establish budget owners for each deployed fleet and chargeback or showback flows back to the business units running operations.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Architecting for Cost
+      - Workload Optimization
+      - Rate Optimization
+  - name: Manage The FinOps Practice
+    capabilities:
+      - FinOps Education and Enablement
+      - FinOps Practice Operations
+      - Onboarding Workloads
+billingMetrics:
+  - id: robot_hours
+    name: Robot Hours
+    description: Hours a Mech (or partner Kawasaki/HiWin arm running on Foresight) is operating in customer facility.
+    unit: hours
+    scope: per-robot
+  - id: autonomous_actions
+    name: Autonomous Actions
+    description: Discrete pick, place, scan, and transport actions executed autonomously by a Dexterity robot.
+    unit: actions
+    scope: per-robot
+    referenceMagnitude: 100_000_000 autonomous actions executed in production as of 2025
+  - id: packing_density
+    name: Packing Density
+    description: Fraction of usable container volume filled, used as a unit-economics metric for trailer- and aircraft-loading workflows.
+    unit: ratio
+    scope: per-workflow
+  - id: decision_latency_ms
+    name: Decision Latency (ms)
+    description: Time from perception input to commanded motion, recorded by Foresight.
+    unit: milliseconds
+    scope: per-action
+    referenceMagnitude: 400ms or less in production
+focusMapping:
+  ServiceCategory: PhysicalAI
+  ChargeCategory: Usage
+  ChargeSubcategory: PerRobotPerShift
+  PricingUnit:
+    - hour
+    - action
+    - case
+  BillingPeriod: month
+  Tags:
+    - Facility
+    - Workflow
+    - Customer
+    - Fleet
+notes:
+  - Dexterity does not publish unit prices; FinOps figures are scaffold dimensions to be filled in by customers from their negotiated contracts.
+  - The Foresight Packing Challenge API is free research access and does not generate billable units.

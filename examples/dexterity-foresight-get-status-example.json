@@ -1,0 +1,30 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://dexterity.ai/challenge/api/status/game_01HXY7F4ZQ7B2J9V3K8M"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "game_id": "game_01HXY7F4ZQ7B2J9V3K8M",
+      "game_status": "in_progress",
+      "mode": "compete",
+      "boxes_placed": 87,
+      "boxes_remaining": 225,
+      "density": 0.4314,
+      "placed_boxes": [],
+      "current_box": {
+        "id": "box_088",
+        "dimensions": [0.36, 0.36, 0.24],
+        "weight": 6.2
+      },
+      "placement_in_progress": false,
+      "termination_reason": null,
+      "latency_stats": {
+        "median_ms": 281.3,
+        "p95_ms": 365.4,
+        "max_ms": 402.0
+      }
+    }
+  }
+}

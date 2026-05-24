@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://dexterity.ai/challenge/api/display-name",
+    "body": {
+      "api_key": "fpc_live_8a4f7e9b1c2d3a5f",
+      "display_name": "stanford-bin-packers"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "display_name": "stanford-bin-packers"
+    }
+  }
+}

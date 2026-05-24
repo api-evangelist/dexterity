@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/dexterity/main/json-schema/dexterity-foresight-game-schema.json",
+  "title": "Game",
+  "description": "A single Foresight Packing Challenge run in which an autonomous agent places boxes into a fixed truck volume. A game progresses through start, repeated place, and stop, with a packing density score reported on completion.",
+  "type": "object",
+  "required": ["game_id", "mode", "status", "density", "boxes_placed", "total_boxes"],
+  "properties": {
+    "game_id": {
+      "type": "string",
+      "description": "Server-assigned identifier for the game run."
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["dev", "compete", "private_eval"],
+      "description": "Execution mode. dev is unlimited and physics-free, compete is rate-limited with full physics, private_eval is the closed evaluation phase."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["in_progress", "completed"],
+      "description": "Current lifecycle status of the game."
+    },
+    "density": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Fraction of usable truck volume filled with boxes."
+    },
+    "boxes_placed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of boxes successfully placed so far."
+    },
+    "total_boxes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of boxes in the original sequence."
+    },
+    "termination_reason": {
+      "type": ["string", "null"],
+      "enum": ["player_stop", "unstable", null],
+      "description": "Reason the game ended, when applicable."
+    },
+    "created_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    }
+  }
+}
