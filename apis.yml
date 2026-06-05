@@ -1,23 +1,17 @@
 aid: dexterity
 name: Dexterity
 description: >-
-  Dexterity is a Redwood City, California Physical AI company founded in 2017
-  by Samir Menon and a group of Stanford roboticists. It builds a full-stack
-  industrial robotics platform that combines the Mech — a roving, dual-arm
-  superhumanoid robot — with Foresight, an in-house world model trained on
-  more than 100 million autonomous actions in production. Foresight
-  orchestrates 68+ skill agents (packing, motion, actualization, trajectory,
-  force-control) across the IRIS hardware abstraction layer to drive Kawasaki
-  arms, HiWin motion components, and Dexterity's own mobile bases at sub-400ms
-  decision latency with zero reported safety incidents. Customers include
-  FedEx, UPS, Sagawa Express, Maersk, and VFC, and the company has raised more
-  than 291M USD from Kleiner Perkins, Lightspeed Venture Partners, Obvious
-  Ventures, Sumitomo Corporation, and B37 Ventures. Dexterity's commercial
-  offering is enterprise Physical AI deployment (no self-service developer
-  API), but it does run a public, research-grade REST API — the Foresight
-  Packing Challenge — that exposes the bin-packing facet of Foresight as a
-  programmable sequential placement game, with a 50,000 USD grand prize and
-  participation restricted to .edu email holders.
+  Dexterity is a Redwood City, California Physical AI company founded in 2017 by Samir Menon and a group of Stanford
+  roboticists. It builds a full-stack industrial robotics platform that combines the Mech — a roving, dual-arm
+  superhumanoid robot — with Foresight, an in-house world model trained on more than 100 million autonomous actions in
+  production. Foresight orchestrates 68+ skill agents (packing, motion, actualization, trajectory, force-control) across
+  the IRIS hardware abstraction layer to drive Kawasaki arms, HiWin motion components, and Dexterity's own mobile bases
+  at sub-400ms decision latency with zero reported safety incidents. Customers include FedEx, UPS, Sagawa Express,
+  Maersk, and VFC, and the company has raised more than 291M USD from Kleiner Perkins, Lightspeed Venture Partners,
+  Obvious Ventures, Sumitomo Corporation, and B37 Ventures. Dexterity's commercial offering is enterprise Physical AI
+  deployment (no self-service developer API), but it does run a public, research-grade REST API — the Foresight Packing
+  Challenge — that exposes the bin-packing facet of Foresight as a programmable sequential placement game, with a 50,000
+  USD grand prize and participation restricted to .edu email holders.
 type: Index
 position: Provider
 access: 3rd-Party
@@ -47,16 +41,12 @@ apis:
   - aid: dexterity:dexterity-foresight-packing-challenge
     name: Dexterity Foresight Packing Challenge API
     description: >-
-      Public REST API exposing the Foresight Packing Challenge as a sequential
-      3D bin-packing problem. Autonomous agents start a game, place boxes
-      sequentially inside a 2.0m x 2.6m x 2.75m truck, and submit final
-      packing density scores to a public leaderboard. Two modes are supported:
-      dev (unlimited, physics-free testing) and compete (full physics
-      simulation with a 50 games/day per-API-key cap). API keys are issued by
-      reaching at least 50% density in the public Truck Loading Game; full
-      leaderboard participation and the 50,000 USD grand prize are restricted
-      to .edu (or equivalent university) email holders. Interactive Swagger
-      docs live at /challenge/api/docs.
+      Public REST API exposing the Foresight Packing Challenge as a sequential 3D bin-packing problem. Autonomous agents
+      start a game, place boxes sequentially inside a 2.0m x 2.6m x 2.75m truck, and submit final packing density scores
+      to a public leaderboard. Two modes are supported: dev (unlimited, physics-free testing) and compete (full physics
+      simulation with a 50 games/day per-API-key cap). API keys are issued by reaching at least 50% density in the
+      public Truck Loading Game; full leaderboard participation and the 50,000 USD grand prize are restricted to .edu
+      (or equivalent university) email holders. Interactive Swagger docs live at /challenge/api/docs.
     humanURL: https://dexterity.ai/challenge
     baseURL: https://dexterity.ai/challenge/api
     tags:
@@ -106,10 +96,6 @@ apis:
         url: examples/dexterity-foresight-leaderboard-example.json
       - type: Example
         url: examples/dexterity-foresight-health-example.json
-      - type: NaftikoCapability
-        url: capabilities/packing-game-play.yaml
-      - type: NaftikoCapability
-        url: capabilities/leaderboard-tracking.yaml
 common:
   - type: Website
     url: https://www.dexterity.ai
@@ -148,11 +134,17 @@ common:
   - type: Features
     data:
       - name: Foresight World Model
-        description: In-house world model trained on 100M+ autonomous actions for spatial reasoning, prediction, and dual-arm orchestration.
+        description: >-
+          In-house world model trained on 100M+ autonomous actions for spatial reasoning, prediction, and dual-arm
+          orchestration.
       - name: 68+ Autonomous Skill Agents
-        description: Specialized agents including Packing, Motion, Actualization, Trajectory, and Force-Control coordinated in real time.
+        description: >-
+          Specialized agents including Packing, Motion, Actualization, Trajectory, and Force-Control coordinated in real
+          time.
       - name: IRIS Hardware Abstraction Layer
-        description: Unified API enabling deployment of Physical AI across Kawasaki arms, HiWin motion components, and Dexterity-built mobile bases.
+        description: >-
+          Unified API enabling deployment of Physical AI across Kawasaki arms, HiWin motion components, and
+          Dexterity-built mobile bases.
       - name: Mech Dual-Arm Robot
         description: Roving superhumanoid robot with two arms designed for industrial logistics tasks.
       - name: Sub-400ms Decision Loop
@@ -160,7 +152,9 @@ common:
       - name: Zero Safety Incidents
         description: 100M+ autonomous decisions in production with no reported safety incidents to date.
       - name: Foresight Packing Challenge API
-        description: Public, research-grade REST API exposing the bin-packing facet of Foresight with a public leaderboard and 50,000 USD prize.
+        description: >-
+          Public, research-grade REST API exposing the bin-packing facet of Foresight with a public leaderboard and
+          50,000 USD prize.
   - type: UseCases
     data:
       - name: Trailer Loading
@@ -176,7 +170,9 @@ common:
       - name: Aircraft Loading and Unloading
         description: Cargo loading and unloading for air freight operations.
       - name: Bin Packing Research
-        description: Academic and industry research into sequential 3D bin packing using the public Foresight Packing Challenge API.
+        description: >-
+          Academic and industry research into sequential 3D bin packing using the public Foresight Packing Challenge
+          API.
   - type: Integrations
     data:
       - name: Kawasaki Heavy Industries
