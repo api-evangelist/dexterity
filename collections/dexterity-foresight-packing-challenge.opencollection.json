@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dexterity Foresight Packing Challenge API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Games",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Game",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dexterity.ai/challenge/api/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start Game"
+        },
+        {
+          "info": {
+            "name": "Place Box",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dexterity.ai/challenge/api/place",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place Box"
+        },
+        {
+          "info": {
+            "name": "Stop Game",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dexterity.ai/challenge/api/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stop Game"
+        },
+        {
+          "info": {
+            "name": "Get Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dexterity.ai/challenge/api/status/:game_id",
+            "params": [
+              {
+                "name": "game_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Status"
+        },
+        {
+          "info": {
+            "name": "Get My Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dexterity.ai/challenge/api/my-games",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get My Games"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Players",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Display Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dexterity.ai/challenge/api/display-name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Display Name"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Leaderboard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dexterity.ai/challenge/api/leaderboard"
+          },
+          "docs": "Get Leaderboard"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dexterity.ai/challenge/api/health"
+          },
+          "docs": "Health"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
