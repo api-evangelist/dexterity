@@ -80,21 +80,21 @@ apis:
         url: json-schema/dexterity-foresight-leaderboard-entry-schema.json
       - type: JSONStructure
         url: json-structure/dexterity-foresight-game-structure.json
-      - type: Example
+      - type: Examples
         url: examples/dexterity-foresight-start-game-example.json
-      - type: Example
+      - type: Examples
         url: examples/dexterity-foresight-place-box-example.json
-      - type: Example
+      - type: Examples
         url: examples/dexterity-foresight-stop-game-example.json
-      - type: Example
+      - type: Examples
         url: examples/dexterity-foresight-get-status-example.json
-      - type: Example
+      - type: Examples
         url: examples/dexterity-foresight-my-games-example.json
-      - type: Example
+      - type: Examples
         url: examples/dexterity-foresight-display-name-example.json
-      - type: Example
+      - type: Examples
         url: examples/dexterity-foresight-leaderboard-example.json
-      - type: Example
+      - type: Examples
         url: examples/dexterity-foresight-health-example.json
 common:
   - type: Website
@@ -123,7 +123,7 @@ common:
     url: rules/dexterity-rules.yml
   - type: Vocabulary
     url: vocabulary/dexterity-vocabulary.yml
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/dexterity-context.jsonld
   - type: Plans
     url: plans/dexterity-plans-pricing.yml
