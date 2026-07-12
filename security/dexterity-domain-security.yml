@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.dexterity.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 17 21:10:47 2026 GMT
+  hsts: false
+- host: dexterity.ai
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 15 05:05:13 2026 GMT
+  hsts: false
+domains:
+- domain: dexterity.ai
+  dnssec: true
+  caa:
+  - 0 issuewild "comodoca.com"
+  - 0 issuewild "globalsign.com"
+  - 0 issuewild "digicert.com"
+  - 0 issue "globalsign.com"
+  - 0 issue "comodoca.com"
+  - 0 issuewild "letsencrypt.org"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
