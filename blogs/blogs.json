@@ -2,13 +2,14 @@
   "repo": "dexterity",
   "feeds": [
     {
-      "source": "https://www.dexterity.ai/blog",
-      "feed_url": "",
+      "source": "https://www.dexterity.ai/about",
+      "feed_url": "https://www.dexterity.ai/about",
+      "title": "",
       "saved": 0,
-      "method": "agent-scrape"
+      "method": "none"
     }
   ],
   "post_count": 14,
-  "fetched": "2026-06-27T12:36:25Z",
-  "agent_pulled": "2026-06-27"
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
