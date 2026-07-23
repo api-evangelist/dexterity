@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Dexterity Foresight Packing Challenge Games Players API
+  version: 0.1.0
+  description: 'The Foresight Packing Challenge API is a public REST API published by Dexterity that exposes a subset of the Foresight world model as a sequential 3D bin-packing problem. Developers (currently restricted to .edu email holders) drive the API to start a game, place boxes inside a 2.0m x 2.6m x 2.75m truck, query game status, and submit results to a public leaderboard. Two modes are supported: dev (unlimited, physics-free placement) and compete (full physics simulation with a 50 games/day rate limit per API key). API keys are obtained by playing the public Truck Loading Game at https://dexterity.ai/play and reaching at least 50% packing density.'
+  contact:
+    name: Dexterity
+    url: https://dexterity.ai/contact
+    email: contact@dexterity.ai
+  termsOfService: https://dexterity.ai/terms-conditions
+servers:
+- url: https://dexterity.ai/challenge/api
+  description: Foresight Packing Challenge production endpoint
+tags:
+- name: Players
+  description: List a player's games and update their public display name.
+paths:
+  /display-name:
+    post:
+      summary: Update Display Name
+      operationId: update_display_name_display_name_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDisplayNameRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateDisplayNameResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Players
+components:
+  schemas:
+    UpdateDisplayNameResponse:
+      properties:
+        display_name:
+          type: string
+          title: Display Name
+      type: object
+      required:
+      - display_name
+      title: UpdateDisplayNameResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    UpdateDisplayNameRequest:
+      properties:
+        api_key:
+          type: string
+          title: Api Key
+        display_name:
+          type: string
+          title: Display Name
+      type: object
+      required:
+      - api_key
+      - display_name
+      title: UpdateDisplayNameRequest
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+externalDocs:
+  description: Foresight API Challenge
+  url: https://dexterity.ai/challenge
