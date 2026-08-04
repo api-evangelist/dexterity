@@ -1,0 +1,20 @@
+{
+  "provider": "dexterity",
+  "sources": [
+    "dexterity-games-api-openapi.yml",
+    "dexterity-leaderboard-api-openapi.yml",
+    "dexterity-players-api-openapi.yml",
+    "dexterity-system-api-openapi.yml"
+  ],
+  "outputs": [
+    "dexterity-games-api-openapi.yml",
+    "dexterity-leaderboard-api-openapi.yml",
+    "dexterity-players-api-openapi.yml",
+    "dexterity-system-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
