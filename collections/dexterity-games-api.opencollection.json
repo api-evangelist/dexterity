@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dexterity Foresight Packing Challenge Games API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Games",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Game",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dexterity.ai/challenge/api/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start Game"
+        },
+        {
+          "info": {
+            "name": "Place Box",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dexterity.ai/challenge/api/place",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place Box"
+        },
+        {
+          "info": {
+            "name": "Stop Game",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dexterity.ai/challenge/api/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stop Game"
+        },
+        {
+          "info": {
+            "name": "Get Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dexterity.ai/challenge/api/status/:game_id",
+            "params": [
+              {
+                "name": "game_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Status"
+        },
+        {
+          "info": {
+            "name": "Get My Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dexterity.ai/challenge/api/my-games",
+            "params": [
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get My Games"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

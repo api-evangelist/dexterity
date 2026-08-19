@@ -1,0 +1,699 @@
+{
+  "item": [
+    {
+      "id": "87122e67-79d2-457d-85e3-7d5d64d7380d",
+      "name": "Games",
+      "description": {
+        "content": "Start, place boxes in, stop and query the status of packing games.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de6f36b6-b7e0-49be-be54-575d307997ea",
+          "name": "Start Game",
+          "request": {
+            "name": "Start Game",
+            "description": {},
+            "url": {
+              "path": [
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"api_key\": \"<string>\",\n  \"mode\": \"compete\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "94974a0f-b9bf-41e4-86b5-e6105a5eacf5",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"api_key\": \"<string>\",\n  \"mode\": \"compete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"game_id\": \"string\",\n  \"truck\": {\n    \"depth\": 8568.365703530997,\n    \"width\": 211.53713622096615,\n    \"height\": 4592.239090217742\n  },\n  \"current_box\": {\n    \"id\": \"string\",\n    \"dimensions\": [\n      9411.473714927675,\n      97.08931118219243\n    ],\n    \"weight\": 2638.30534568796\n  },\n  \"boxes_remaining\": 8748,\n  \"mode\": \"dev\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0686052-8258-4206-b287-2ccc18cc41e8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"api_key\": \"<string>\",\n  \"mode\": \"compete\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4b46d88-6836-4948-9587-8242b88d8213",
+          "name": "Place Box",
+          "request": {
+            "name": "Place Box",
+            "description": {},
+            "url": {
+              "path": [
+                "place"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"game_id\": \"<string>\",\n  \"box_id\": \"<string>\",\n  \"position\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"orientation_wxyz\": [\n    \"<number>\",\n    \"<number>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44fc2327-e613-40b3-a2fb-50f1dccf1188",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "place"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"game_id\": \"<string>\",\n  \"box_id\": \"<string>\",\n  \"position\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"orientation_wxyz\": [\n    \"<number>\",\n    \"<number>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\",\n  \"placed_boxes\": [\n    {\n      \"id\": \"string\",\n      \"position\": [\n        6294.429065879686,\n        9685.43194487125\n      ],\n      \"orientation_wxyz\": [\n        8382.536625542662,\n        2061.664430813276\n      ],\n      \"dimensions\": [\n        8928.784936292448,\n        6852.536939902621\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"position\": [\n        3142.556488599186,\n        7822.543712735711\n      ],\n      \"orientation_wxyz\": [\n        789.0591202850494,\n        1968.8187592482898\n      ],\n      \"dimensions\": [\n        3609.945773485005,\n        2938.169356269785\n      ]\n    }\n  ],\n  \"current_box\": {\n    \"id\": \"string\",\n    \"dimensions\": [\n      684.0960248875949,\n      1162.6756952924422\n    ],\n    \"weight\": 707.6244239434615\n  },\n  \"boxes_remaining\": 7259,\n  \"density\": 143.50812645609778,\n  \"game_status\": \"completed\",\n  \"termination_reason\": \"player_stop\",\n  \"decision_latency_ms\": 7178.199199302605\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19dcd712-27ee-4a2b-abc5-b8d3cd0d6252",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "place"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"game_id\": \"<string>\",\n  \"box_id\": \"<string>\",\n  \"position\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"orientation_wxyz\": [\n    \"<number>\",\n    \"<number>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0ce6fe0-1fe8-48d0-98f5-3fe17a561073",
+          "name": "Stop Game",
+          "request": {
+            "name": "Stop Game",
+            "description": {},
+            "url": {
+              "path": [
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"game_id\": \"<string>\",\n  \"api_key\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c4b2144-2d7c-4c2e-9a6c-5dcf5893c8d2",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"game_id\": \"<string>\",\n  \"api_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"density\": 7228.492409223193,\n  \"boxes_placed\": 4572,\n  \"boxes_remaining\": 4516,\n  \"game_status\": \"completed\",\n  \"latency_stats\": {\n    \"median_ms\": 9688.355745704135,\n    \"p95_ms\": 597.4380995339002,\n    \"max_ms\": 733.6128322670799\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "512b5146-ac04-48f4-9fce-d666fdfd9741",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"game_id\": \"<string>\",\n  \"api_key\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3819ccf-3e76-40f1-9fe0-3d7e6b2c3cd1",
+          "name": "Get Status",
+          "request": {
+            "name": "Get Status",
+            "description": {},
+            "url": {
+              "path": [
+                "status",
+                ":game_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "game_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b1edc1c-2edf-453c-a5b6-48afd233acc8",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status",
+                    ":game_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "game_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"game_id\": \"string\",\n  \"game_status\": \"in_progress\",\n  \"mode\": \"private_eval\",\n  \"boxes_placed\": 5424,\n  \"boxes_remaining\": 9930,\n  \"density\": 9688.540222194337,\n  \"placed_boxes\": [\n    {\n      \"id\": \"string\",\n      \"position\": [\n        3904.344517195578,\n        3982.4171348642135\n      ],\n      \"orientation_wxyz\": [\n        1961.7676693242959,\n        8739.09833217333\n      ],\n      \"dimensions\": [\n        8315.142899284927,\n        3991.5637214353073\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"position\": [\n        8447.635618892258,\n        5172.951801302697\n      ],\n      \"orientation_wxyz\": [\n        2917.0725533907726,\n        1150.346845778346\n      ],\n      \"dimensions\": [\n        4670.911477188414,\n        478.26515260573467\n      ]\n    }\n  ],\n  \"current_box\": {\n    \"id\": \"string\",\n    \"dimensions\": [\n      7210.027675414837,\n      4900.309320012321\n    ],\n    \"weight\": 8241.832269270766\n  },\n  \"placement_in_progress\": false,\n  \"termination_reason\": \"unstable\",\n  \"latency_stats\": {\n    \"median_ms\": 1709.5846993018172,\n    \"p95_ms\": 7227.622189359143,\n    \"max_ms\": 194.80740329276935\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9218661a-5ebe-4972-87ac-5faff9e1dbc5",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status",
+                    ":game_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "game_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a5209b0-9ee0-44a6-8d5b-96b332ea497e",
+          "name": "Get My Games",
+          "request": {
+            "name": "Get My Games",
+            "description": {},
+            "url": {
+              "path": [
+                "my-games"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6abc6952-a916-4d9f-9658-b639b99e841c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "my-games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "compete"
+                    },
+                    {
+                      "key": "status",
+                      "value": "completed"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"api_key\": \"string\",\n  \"summary\": {\n    \"total_games\": 7131,\n    \"completed_games\": 853,\n    \"in_progress_games\": 6813,\n    \"games_today\": 2157,\n    \"daily_limit\": 6016,\n    \"avg_density_compete\": 2377.5658865880077,\n    \"best_density_compete\": 7209.9036292089495,\n    \"iqm_density_compete\": 3568.481987157651,\n    \"private_eval\": {\n      \"games_started\": 1986,\n      \"games_completed\": 444,\n      \"games_remaining\": 2653,\n      \"next_sequence_index\": 896,\n      \"last_density\": 8683.712829742833,\n      \"avg_density\": 9042.655294489094,\n      \"best_density\": 3877.1520198597764,\n      \"iqm_density\": 6617.733405588031,\n      \"in_progress_game_id\": \"string\"\n    }\n  },\n  \"games\": [\n    {\n      \"game_id\": \"string\",\n      \"mode\": \"dev\",\n      \"status\": \"in_progress\",\n      \"density\": 1433.9913374236023,\n      \"boxes_placed\": 9076,\n      \"total_boxes\": 9320,\n      \"termination_reason\": \"player_stop\",\n      \"created_at\": \"1967-11-22T23:51:46.362Z\",\n      \"completed_at\": \"1982-10-27T21:31:11.658Z\"\n    },\n    {\n      \"game_id\": \"string\",\n      \"mode\": \"compete\",\n      \"status\": \"completed\",\n      \"density\": 8962.419462588312,\n      \"boxes_placed\": 5645,\n      \"total_boxes\": 1267,\n      \"termination_reason\": \"player_stop\",\n      \"created_at\": \"2008-03-16T03:28:30.569Z\",\n      \"completed_at\": \"1983-12-27T10:29:24.309Z\"\n    }\n  ],\n  \"display_name\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1f79349-5500-428e-8091-a7669c0d80a8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "my-games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "compete"
+                    },
+                    {
+                      "key": "status",
+                      "value": "completed"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dexterity.ai/challenge/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fa044789-18e6-42a3-82cc-ed02d31829bc",
+    "name": "Dexterity Foresight Packing Challenge Games API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Foresight Packing Challenge API is a public REST API published by Dexterity that exposes a subset of the Foresight world model as a sequential 3D bin-packing problem. Developers (currently restricted to .edu email holders) drive the API to start a game, place boxes inside a 2.0m x 2.6m x 2.75m truck, query game status, and submit results to a public leaderboard. Two modes are supported: dev (unlimited, physics-free placement) and compete (full physics simulation with a 50 games/day rate limit per API key). API keys are obtained by playing the public Truck Loading Game at https://dexterity.ai/play and reaching at least 50% packing density.\n\nContact Support:\n Name: Dexterity\n Email: contact@dexterity.ai",
+      "type": "text/plain"
+    }
+  }
+}

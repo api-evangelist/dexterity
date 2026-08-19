@@ -1,0 +1,99 @@
+{
+  "item": [
+    {
+      "id": "5eeb73b7-f3eb-492d-aeb3-864202d5e506",
+      "name": "Leaderboard",
+      "description": {
+        "content": "Retrieve the public Foresight Packing Challenge leaderboard.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "465b9261-20ed-4d1d-bf32-af04ed6a5246",
+          "name": "Get Leaderboard",
+          "request": {
+            "name": "Get Leaderboard",
+            "description": {},
+            "url": {
+              "path": [
+                "leaderboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb19ece3-3e07-4096-9a77-21487d0edb34",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leaderboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dexterity.ai/challenge/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "33c4caa7-18e0-4576-bc6d-ead4faa49c50",
+    "name": "Dexterity Foresight Packing Challenge Games Leaderboard API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Foresight Packing Challenge API is a public REST API published by Dexterity that exposes a subset of the Foresight world model as a sequential 3D bin-packing problem. Developers (currently restricted to .edu email holders) drive the API to start a game, place boxes inside a 2.0m x 2.6m x 2.75m truck, query game status, and submit results to a public leaderboard. Two modes are supported: dev (unlimited, physics-free placement) and compete (full physics simulation with a 50 games/day rate limit per API key). API keys are obtained by playing the public Truck Loading Game at https://dexterity.ai/play and reaching at least 50% packing density.\n\nContact Support:\n Name: Dexterity\n Email: contact@dexterity.ai",
+      "type": "text/plain"
+    }
+  }
+}

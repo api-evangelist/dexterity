@@ -1,0 +1,99 @@
+{
+  "item": [
+    {
+      "id": "835ff095-9ac1-4fe9-a398-2cb454fd66be",
+      "name": "System",
+      "description": {
+        "content": "Service health and operational endpoints.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1365c986-0e1a-46fe-89d0-a12aeef52516",
+          "name": "Health",
+          "request": {
+            "name": "Health",
+            "description": {},
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6cbc83d2-72d9-4abe-a0e2-da781525deaf",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dexterity.ai/challenge/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3692e16b-d8d2-4dd3-ab88-a9a2fb6df5ff",
+    "name": "Dexterity Foresight Packing Challenge Games System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Foresight Packing Challenge API is a public REST API published by Dexterity that exposes a subset of the Foresight world model as a sequential 3D bin-packing problem. Developers (currently restricted to .edu email holders) drive the API to start a game, place boxes inside a 2.0m x 2.6m x 2.75m truck, query game status, and submit results to a public leaderboard. Two modes are supported: dev (unlimited, physics-free placement) and compete (full physics simulation with a 50 games/day rate limit per API key). API keys are obtained by playing the public Truck Loading Game at https://dexterity.ai/play and reaching at least 50% packing density.\n\nContact Support:\n Name: Dexterity\n Email: contact@dexterity.ai",
+      "type": "text/plain"
+    }
+  }
+}

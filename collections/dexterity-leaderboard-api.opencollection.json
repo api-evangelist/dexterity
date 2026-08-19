@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dexterity Foresight Packing Challenge Games Leaderboard API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leaderboard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://dexterity.ai/challenge/api/leaderboard"
+          },
+          "docs": "Get Leaderboard"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

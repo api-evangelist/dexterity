@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dexterity Foresight Packing Challenge Games Players API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Players",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Display Name",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://dexterity.ai/challenge/api/display-name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Display Name"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
