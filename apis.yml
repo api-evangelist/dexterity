@@ -13,6 +13,18 @@ description: >-
   Challenge — that exposes the bin-packing facet of Foresight as a programmable sequential placement game, with a 50,000
   USD grand prize and participation restricted to .edu email holders.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: unknown
