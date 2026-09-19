@@ -114,6 +114,8 @@ apis:
   humanURL: https://dexterity.ai/challenge
   baseURL: https://dexterity.ai/challenge/api
   tags:
+  - Leaderboards
+  tags_raw:
   - Leaderboard
   properties:
   - type: OpenAPI
@@ -160,6 +162,8 @@ apis:
   humanURL: https://dexterity.ai/challenge
   baseURL: https://dexterity.ai/challenge/api
   tags:
+  - Player
+  tags_raw:
   - Players
   properties:
   - type: OpenAPI
