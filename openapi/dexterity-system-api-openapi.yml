@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Dexterity Foresight Packing Challenge Games System API
+  title: Dexterity Foresight Packing Challenge System API
   version: 0.1.0
-  description: 'The Foresight Packing Challenge API is a public REST API published by Dexterity that exposes a subset of the Foresight world model as a sequential 3D bin-packing problem. Developers (currently restricted to .edu email holders) drive the API to start a game, place boxes inside a 2.0m x 2.6m x 2.75m truck, query game status, and submit results to a public leaderboard. Two modes are supported: dev (unlimited, physics-free placement) and compete (full physics simulation with a 50 games/day rate limit per API key). API keys are obtained by playing the public Truck Loading Game at https://dexterity.ai/play and reaching at least 50% packing density.'
+  description: The Foresight Packing Challenge API is a public REST API published by Dexterity that exposes a subset of the Foresight world model as a sequential 3D bin-packing problem.
   contact:
     name: Dexterity
     url: https://dexterity.ai/contact
