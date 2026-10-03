@@ -160,15 +160,61 @@ paths:
       - Games
 components:
   schemas:
-    HTTPValidationError:
+    StartRequest:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        api_key:
+          type: string
+          title: Api Key
+        mode:
+          $ref: '#/components/schemas/GameMode'
+          default: compete
       type: object
-      title: HTTPValidationError
+      required:
+      - api_key
+      title: StartRequest
+    PlaceResponse:
+      properties:
+        status:
+          type: string
+          enum:
+          - ok
+          - terminated
+          title: Status
+        placed_boxes:
+          items:
+            $ref: '#/components/schemas/PlacedBox'
+          type: array
+          title: Placed Boxes
+        current_box:
+          anyOf:
+          - $ref: '#/components/schemas/BoxInfo'
+          - type: 'null'
+        boxes_remaining:
+          type: integer
+          title: Boxes Remaining
+        density:
+          type: number
+          title: Density
+        game_status:
+          $ref: '#/components/schemas/GameStatus'
+        termination_reason:
+          anyOf:
+          - $ref: '#/components/schemas/TerminationReason'
+          - type: 'null'
+        decision_latency_ms:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Decision Latency Ms
+      type: object
+      required:
+      - status
+      - placed_boxes
+      - current_box
+      - boxes_remaining
+      - density
+      - game_status
+      title: PlaceResponse
     PrivateEvalSummary:
       properties:
         games_started:
@@ -216,81 +262,13 @@ components:
       - games_completed
       - games_remaining
       title: PrivateEvalSummary
-    StartResponse:
-      properties:
-        game_id:
-          type: string
-          title: Game Id
-        truck:
-          $ref: '#/components/schemas/TruckConfig'
-        current_box:
-          $ref: '#/components/schemas/BoxInfo'
-        boxes_remaining:
-          type: integer
-          title: Boxes Remaining
-        mode:
-          $ref: '#/components/schemas/GameMode'
-      type: object
-      required:
-      - game_id
-      - truck
-      - current_box
-      - boxes_remaining
-      - mode
-      title: StartResponse
-    StartRequest:
-      properties:
-        api_key:
-          type: string
-          title: Api Key
-        mode:
-          $ref: '#/components/schemas/GameMode'
-          default: compete
-      type: object
-      required:
-      - api_key
-      title: StartRequest
-    LatencyStats:
-      properties:
-        median_ms:
-          type: number
-          title: Median Ms
-        p95_ms:
-          type: number
-          title: P95 Ms
-        max_ms:
-          type: number
-          title: Max Ms
-      type: object
-      required:
-      - median_ms
-      - p95_ms
-      - max_ms
-      title: LatencyStats
-    StopResponse:
-      properties:
-        density:
-          type: number
-          title: Density
-        boxes_placed:
-          type: integer
-          title: Boxes Placed
-        boxes_remaining:
-          type: integer
-          title: Boxes Remaining
-        game_status:
-          $ref: '#/components/schemas/GameStatus'
-          default: completed
-        latency_stats:
-          anyOf:
-          - $ref: '#/components/schemas/LatencyStats'
-          - type: 'null'
-      type: object
-      required:
-      - density
-      - boxes_placed
-      - boxes_remaining
-      title: StopResponse
+    GameMode:
+      type: string
+      enum:
+      - dev
+      - compete
+      - private_eval
+      title: GameMode
     TruckConfig:
       properties:
         depth:
@@ -308,6 +286,19 @@ components:
       - width
       - height
       title: TruckConfig
+    StopRequest:
+      properties:
+        game_id:
+          type: string
+          title: Game Id
+        api_key:
+          type: string
+          title: Api Key
+      type: object
+      required:
+      - game_id
+      - api_key
+      title: StopRequest
     PlaceRequest:
       properties:
         game_id:
@@ -333,25 +324,148 @@ components:
       - position
       - orientation_wxyz
       title: PlaceRequest
-    BoxInfo:
+    ValidationError:
       properties:
-        id:
-          type: string
-          title: Id
-        dimensions:
+        loc:
           items:
-            type: number
+            anyOf:
+            - type: string
+            - type: integer
           type: array
-          title: Dimensions
-        weight:
-          type: number
-          title: Weight
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
       required:
-      - id
-      - dimensions
-      - weight
-      title: BoxInfo
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TerminationReason:
+      type: string
+      enum:
+      - player_stop
+      - unstable
+      title: TerminationReason
+    MyGamesResponse:
+      properties:
+        api_key:
+          type: string
+          title: Api Key
+        display_name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Display Name
+        summary:
+          $ref: '#/components/schemas/GamesSummary'
+        games:
+          items:
+            $ref: '#/components/schemas/GameListItem'
+          type: array
+          title: Games
+      type: object
+      required:
+      - api_key
+      - summary
+      - games
+      title: MyGamesResponse
+    GameListItem:
+      properties:
+        game_id:
+          type: string
+          title: Game Id
+        mode:
+          $ref: '#/components/schemas/GameMode'
+        status:
+          $ref: '#/components/schemas/GameStatus'
+        density:
+          type: number
+          title: Density
+        boxes_placed:
+          type: integer
+          title: Boxes Placed
+        total_boxes:
+          type: integer
+          title: Total Boxes
+        termination_reason:
+          anyOf:
+          - $ref: '#/components/schemas/TerminationReason'
+          - type: 'null'
+        created_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Created At
+        completed_at:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Completed At
+      type: object
+      required:
+      - game_id
+      - mode
+      - status
+      - density
+      - boxes_placed
+      - total_boxes
+      title: GameListItem
+    GamesSummary:
+      properties:
+        total_games:
+          type: integer
+          title: Total Games
+        completed_games:
+          type: integer
+          title: Completed Games
+        in_progress_games:
+          type: integer
+          title: In Progress Games
+        avg_density_compete:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Avg Density Compete
+        best_density_compete:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Best Density Compete
+        iqm_density_compete:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Iqm Density Compete
+        games_today:
+          type: integer
+          title: Games Today
+        daily_limit:
+          type: integer
+          title: Daily Limit
+        private_eval:
+          anyOf:
+          - $ref: '#/components/schemas/PrivateEvalSummary'
+          - type: 'null'
+      type: object
+      required:
+      - total_games
+      - completed_games
+      - in_progress_games
+      - games_today
+      - daily_limit
+      title: GamesSummary
     StatusResponse:
       properties:
         game_id:
@@ -402,204 +516,6 @@ components:
       - placed_boxes
       - current_box
       title: StatusResponse
-    GamesSummary:
-      properties:
-        total_games:
-          type: integer
-          title: Total Games
-        completed_games:
-          type: integer
-          title: Completed Games
-        in_progress_games:
-          type: integer
-          title: In Progress Games
-        avg_density_compete:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Avg Density Compete
-        best_density_compete:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Best Density Compete
-        iqm_density_compete:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Iqm Density Compete
-        games_today:
-          type: integer
-          title: Games Today
-        daily_limit:
-          type: integer
-          title: Daily Limit
-        private_eval:
-          anyOf:
-          - $ref: '#/components/schemas/PrivateEvalSummary'
-          - type: 'null'
-      type: object
-      required:
-      - total_games
-      - completed_games
-      - in_progress_games
-      - games_today
-      - daily_limit
-      title: GamesSummary
-    PlaceResponse:
-      properties:
-        status:
-          type: string
-          enum:
-          - ok
-          - terminated
-          title: Status
-        placed_boxes:
-          items:
-            $ref: '#/components/schemas/PlacedBox'
-          type: array
-          title: Placed Boxes
-        current_box:
-          anyOf:
-          - $ref: '#/components/schemas/BoxInfo'
-          - type: 'null'
-        boxes_remaining:
-          type: integer
-          title: Boxes Remaining
-        density:
-          type: number
-          title: Density
-        game_status:
-          $ref: '#/components/schemas/GameStatus'
-        termination_reason:
-          anyOf:
-          - $ref: '#/components/schemas/TerminationReason'
-          - type: 'null'
-        decision_latency_ms:
-          anyOf:
-          - type: number
-          - type: 'null'
-          title: Decision Latency Ms
-      type: object
-      required:
-      - status
-      - placed_boxes
-      - current_box
-      - boxes_remaining
-      - density
-      - game_status
-      title: PlaceResponse
-    GameStatus:
-      type: string
-      enum:
-      - in_progress
-      - completed
-      title: GameStatus
-    GameMode:
-      type: string
-      enum:
-      - dev
-      - compete
-      - private_eval
-      title: GameMode
-    MyGamesResponse:
-      properties:
-        api_key:
-          type: string
-          title: Api Key
-        display_name:
-          anyOf:
-          - type: string
-          - type: 'null'
-          title: Display Name
-        summary:
-          $ref: '#/components/schemas/GamesSummary'
-        games:
-          items:
-            $ref: '#/components/schemas/GameListItem'
-          type: array
-          title: Games
-      type: object
-      required:
-      - api_key
-      - summary
-      - games
-      title: MyGamesResponse
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    TerminationReason:
-      type: string
-      enum:
-      - player_stop
-      - unstable
-      title: TerminationReason
-    GameListItem:
-      properties:
-        game_id:
-          type: string
-          title: Game Id
-        mode:
-          $ref: '#/components/schemas/GameMode'
-        status:
-          $ref: '#/components/schemas/GameStatus'
-        density:
-          type: number
-          title: Density
-        boxes_placed:
-          type: integer
-          title: Boxes Placed
-        total_boxes:
-          type: integer
-          title: Total Boxes
-        termination_reason:
-          anyOf:
-          - $ref: '#/components/schemas/TerminationReason'
-          - type: 'null'
-        created_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Created At
-        completed_at:
-          anyOf:
-          - type: string
-            format: date-time
-          - type: 'null'
-          title: Completed At
-      type: object
-      required:
-      - game_id
-      - mode
-      - status
-      - density
-      - boxes_placed
-      - total_boxes
-      title: GameListItem
     PlacedBox:
       properties:
         id:
@@ -627,19 +543,103 @@ components:
       - orientation_wxyz
       - dimensions
       title: PlacedBox
-    StopRequest:
+    GameStatus:
+      type: string
+      enum:
+      - in_progress
+      - completed
+      title: GameStatus
+    LatencyStats:
+      properties:
+        median_ms:
+          type: number
+          title: Median Ms
+        p95_ms:
+          type: number
+          title: P95 Ms
+        max_ms:
+          type: number
+          title: Max Ms
+      type: object
+      required:
+      - median_ms
+      - p95_ms
+      - max_ms
+      title: LatencyStats
+    BoxInfo:
+      properties:
+        id:
+          type: string
+          title: Id
+        dimensions:
+          items:
+            type: number
+          type: array
+          title: Dimensions
+        weight:
+          type: number
+          title: Weight
+      type: object
+      required:
+      - id
+      - dimensions
+      - weight
+      title: BoxInfo
+    StopResponse:
+      properties:
+        density:
+          type: number
+          title: Density
+        boxes_placed:
+          type: integer
+          title: Boxes Placed
+        boxes_remaining:
+          type: integer
+          title: Boxes Remaining
+        game_status:
+          $ref: '#/components/schemas/GameStatus'
+          default: completed
+        latency_stats:
+          anyOf:
+          - $ref: '#/components/schemas/LatencyStats'
+          - type: 'null'
+      type: object
+      required:
+      - density
+      - boxes_placed
+      - boxes_remaining
+      title: StopResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    StartResponse:
       properties:
         game_id:
           type: string
           title: Game Id
-        api_key:
-          type: string
-          title: Api Key
+        truck:
+          $ref: '#/components/schemas/TruckConfig'
+        current_box:
+          $ref: '#/components/schemas/BoxInfo'
+        boxes_remaining:
+          type: integer
+          title: Boxes Remaining
+        mode:
+          $ref: '#/components/schemas/GameMode'
       type: object
       required:
       - game_id
-      - api_key
-      title: StopRequest
+      - truck
+      - current_box
+      - boxes_remaining
+      - mode
+      title: StartResponse
 externalDocs:
   description: Foresight API Challenge
   url: https://dexterity.ai/challenge
