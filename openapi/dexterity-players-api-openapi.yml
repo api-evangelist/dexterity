@@ -42,15 +42,15 @@ paths:
       - Players
 components:
   schemas:
-    UpdateDisplayNameResponse:
+    HTTPValidationError:
       properties:
-        display_name:
-          type: string
-          title: Display Name
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
-      required:
-      - display_name
-      title: UpdateDisplayNameResponse
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -90,15 +90,15 @@ components:
       - api_key
       - display_name
       title: UpdateDisplayNameRequest
-    HTTPValidationError:
+    UpdateDisplayNameResponse:
       properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
+        display_name:
+          type: string
+          title: Display Name
       type: object
-      title: HTTPValidationError
+      required:
+      - display_name
+      title: UpdateDisplayNameResponse
 externalDocs:
   description: Foresight API Challenge
   url: https://dexterity.ai/challenge
