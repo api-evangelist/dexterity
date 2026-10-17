@@ -51,6 +51,15 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    UpdateDisplayNameResponse:
+      properties:
+        display_name:
+          type: string
+          title: Display Name
+      type: object
+      required:
+      - display_name
+      title: UpdateDisplayNameResponse
     ValidationError:
       properties:
         loc:
@@ -90,15 +99,6 @@ components:
       - api_key
       - display_name
       title: UpdateDisplayNameRequest
-    UpdateDisplayNameResponse:
-      properties:
-        display_name:
-          type: string
-          title: Display Name
-      type: object
-      required:
-      - display_name
-      title: UpdateDisplayNameResponse
 externalDocs:
   description: Foresight API Challenge
   url: https://dexterity.ai/challenge
