@@ -1,4 +1,4 @@
-# Dexterity (dexterity)
+# Dexterity
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,106 +66,168 @@
 
 Dexterity is a Redwood City, California Physical AI company founded in 2017 by Samir Menon and a group of Stanford roboticists. It builds a full-stack industrial robotics platform that combines the Mech — a roving, dual-arm superhumanoid robot — with Foresight, an in-house world model trained on more than 100 million autonomous actions in production. Foresight orchestrates 68+ skill agents (packing, motion, actualization, trajectory, force-control) across the IRIS hardware abstraction layer to drive Kawasaki arms, HiWin motion components, and Dexterity's own mobile bases at sub-400ms decision latency with zero reported safety incidents. Customers include FedEx, UPS, Sagawa Express, Maersk, and VFC, and the company has raised more than 291M USD from Kleiner Perkins, Lightspeed Venture Partners, Obvious Ventures, Sumitomo Corporation, and B37 Ventures. Dexterity's commercial offering is enterprise Physical AI deployment (no self-service developer API), but it does run a public, research-grade REST API — the Foresight Packing Challenge — that exposes the bin-packing facet of Foresight as a programmable sequential placement game, with a 50,000 USD grand prize and participation restricted to .edu email holders.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/dexterity/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/dexterity/refs/heads/main/apis.yml)
+**Areas:** Physical AI · Industrial Robotics · Robotics · Warehouse Automation · Logistics · Manufacturing · World Model · Foresight · Mech · Dual-Arm · Truck Loading · Palletizing
 
-## Scope
+## Dexterity on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for Dexterity is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dexterity/](https://apis.io/providers/dexterity/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Physical AI
-- Industrial Robotics
-- Robotics
-- Warehouse Automation
-- Logistics
-- Manufacturing
-- World Model
-- Foresight
-- Mech
-- Dual-Arm
-- Truck Loading
-- Palletizing
-- Depalletizing
-- Singulation
-- Research API
-- Packing Challenge
+- [Dexterity Games API](https://apis.io/apis/dexterity/dexterity-games-api/) — Start, place boxes in, stop and query the status of packing games.
+- [Dexterity Leaderboard API](https://apis.io/apis/dexterity/dexterity-leaderboard-api/) — Retrieve the public Foresight Packing Challenge leaderboard.
+- [Dexterity Players API](https://apis.io/apis/dexterity/dexterity-players-api/) — List a player's games and update their public display name.
+- [Dexterity System API](https://apis.io/apis/dexterity/dexterity-system-api/) — Service health and operational endpoints.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-24
-- **Modified:** 2026-05-24
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Dexterity Foresight Packing Challenge API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Public REST API exposing the Foresight Packing Challenge as a sequential 3D bin-packing problem. Autonomous agents start a game, place boxes sequentially inside a 2.0m x 2.6m x 2.75m truck, and submit final packing density scores to a public leaderboard. Two modes are supported: dev (unlimited, physics-free testing) and compete (full physics simulation with a 50 games/day per-API-key cap). API keys are issued by reaching at least 50% density in the public Truck Loading Game; full leaderboard participation and the 50,000 USD grand prize are restricted to .edu (or equivalent university) email holders. Interactive Swagger docs live at /challenge/api/docs.
+- [Dexterity Agentic Access](https://apis.io/agentic-access/dexterity/dexterity-agentic-access/)
 
-- **Human URL:** [https://dexterity.ai/challenge](https://dexterity.ai/challenge)
-- **Base URL:** `https://dexterity.ai/challenge/api`
+#### JSON Schema (5)
 
-#### Tags
+The data models the API reads and writes.
 
-- Physical AI
-- Foresight
-- Packing Challenge
-- REST API
-- Research API
-- Bin Packing
-- Leaderboard
+- [Box](https://apis.io/schemas/dexterity/dexterity-foresight-box/)
+- [Game](https://apis.io/schemas/dexterity/dexterity-foresight-game/)
+- [LeaderboardEntry](https://apis.io/schemas/dexterity/dexterity-foresight-leaderboard-entry/)
+- [PlacedBox](https://apis.io/schemas/dexterity/dexterity-foresight-placed-box/)
+- [TruckConfig](https://apis.io/schemas/dexterity/dexterity-foresight-truck-config/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://dexterity.ai/challenge)
-- [API Reference](https://dexterity.ai/challenge/api/docs)
-- [Getting Started](https://dexterity.ai/play)
-- [Authentication](https://dexterity.ai/challenge)
-- [OpenAPI](openapi/dexterity-foresight-packing-challenge-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/dexterity-foresight-packing-challenge.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/dexterity-foresight-packing-challenge.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/dexterity-foresight-game-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/dexterity-foresight-box-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/dexterity-foresight-placed-box-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/dexterity-foresight-truck-config-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/dexterity-foresight-leaderboard-entry-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/dexterity-foresight-game-structure.json)
-- [Example](examples/dexterity-foresight-start-game-example.json)
-- [Example](examples/dexterity-foresight-place-box-example.json)
-- [Example](examples/dexterity-foresight-stop-game-example.json)
-- [Example](examples/dexterity-foresight-get-status-example.json)
-- [Example](examples/dexterity-foresight-my-games-example.json)
-- [Example](examples/dexterity-foresight-display-name-example.json)
-- [Example](examples/dexterity-foresight-leaderboard-example.json)
-- [Example](examples/dexterity-foresight-health-example.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Dexterity Foresight Game Structure](https://apis.io/json-structure/dexterity/dexterity-foresight-game-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Dexterity Context](https://apis.io/jsonld/dexterity/dexterity-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Dexterity Vocabulary](https://apis.io/vocabularies/dexterity/dexterity-vocabulary/)
+
+#### Examples (8)
+
+Example requests and responses.
+
+- [Dexterity Foresight Display Name Example](https://apis.io/examples/dexterity/dexterity-foresight-display-name-example/)
+- [Dexterity Foresight Get Status Example](https://apis.io/examples/dexterity/dexterity-foresight-get-status-example/)
+- [Dexterity Foresight Health Example](https://apis.io/examples/dexterity/dexterity-foresight-health-example/)
+- [Dexterity Foresight Leaderboard Example](https://apis.io/examples/dexterity/dexterity-foresight-leaderboard-example/)
+- [Dexterity Foresight My Games Example](https://apis.io/examples/dexterity/dexterity-foresight-my-games-example/)
+- [Dexterity Foresight Place Box Example](https://apis.io/examples/dexterity/dexterity-foresight-place-box-example/)
+- [Dexterity Foresight Start Game Example](https://apis.io/examples/dexterity/dexterity-foresight-start-game-example/)
+- [Dexterity Foresight Stop Game Example](https://apis.io/examples/dexterity/dexterity-foresight-stop-game-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Dexterity Foresight Packing Challenge API](https://apis.io/collections/dexterity/open-dexterity-foresight-packing-challenge/)
+- [Dexterity Foresight Packing Challenge Games API](https://apis.io/collections/dexterity/open-dexterity-games-api/)
+- [Dexterity Foresight Packing Challenge Games Leaderboard API](https://apis.io/collections/dexterity/open-dexterity-leaderboard-api/)
+- [Dexterity Foresight Packing Challenge Games Players API](https://apis.io/collections/dexterity/open-dexterity-players-api/)
+- [Dexterity Foresight Packing Challenge Games System API](https://apis.io/collections/dexterity/open-dexterity-system-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Dexterity — jsonschema rules](https://apis.io/rules/dexterity/dexterity-jsonschema-spectral-rules/)
+- [Dexterity API Rules](https://apis.io/rules/dexterity/dexterity-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Dexterity Domain Security](https://apis.io/security/dexterity/dexterity-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Dexterity Plans Pricing](https://apis.io/plans/dexterity/dexterity-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Dexterity Rate Limits](https://apis.io/rate-limits/dexterity/dexterity-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Dexterity Finops](https://apis.io/finops/dexterity/dexterity-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.dexterity.ai)
-- [Platform](https://www.dexterity.ai/platform)
-- [Foresight](https://www.dexterity.ai/blog/foresight)
-- [Mech](https://www.dexterity.ai/platform)
-- [Challenge](https://dexterity.ai/challenge)
-- [Truck Loading Game](https://dexterity.ai/play)
-- [About](https://www.dexterity.ai/about)
 - [Blog](https://www.dexterity.ai/blog)
-- [Contact](https://www.dexterity.ai/contact)
-- [Terms of Service](https://dexterity.ai/terms-conditions)
-- [LinkedIn](https://www.linkedin.com/company/dexterityinc)
-- [Spectral Rules](rules/dexterity-rules.yml)
-- [Vocabulary](vocabulary/dexterity-vocabulary.yml)
-- [J S O N- L D](json-ld/dexterity-context.jsonld)
-- [Plans](plans/dexterity-plans-pricing.yml)
-- [Rate Limits](rate-limits/dexterity-rate-limits.yml)
-- [Fin Ops](finops/dexterity-finops.yml)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
-- [Solutions](undefined)
+- [Terms of service](https://dexterity.ai/terms-conditions)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 37.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 57.6 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 42.9 |
+| Access clarity | 15.8 |
+
+**Agent readiness 24.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/dexterity/](https://apis.io/providers/dexterity/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Dexterity: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dexterity/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
